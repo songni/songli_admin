@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8' />
+    <title>react production - server side rendering</title>
+</head>
+<body>
+    <div id='app'>{{ html|safe }}</div>
+    <script>
+        window.__INITIAL_STATE__ = {{ JSON.stringify(state) }};
+    </script>
+    {% if env === 'production' %}
+    <script src="/dist/client/assets/js/bundle.js"></script>
+    {% else %}
+    <script src="http://localhost:8080/client/bundle.js"></script>
+    {% endif %}
+</body>
+</html>
